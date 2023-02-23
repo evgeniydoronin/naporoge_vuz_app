@@ -59,15 +59,15 @@
     </li><!-- .nk-menu-item -->
 
     <li class="nk-menu-item">
-        <a href="students.php" class="nk-menu-link">
+        <a href="" class="nk-menu-link">
             <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
             <span class="nk-menu-text">Студенты</span>
         </a>
     </li><!-- .nk-menu-item -->
 
 
-    <li class="nk-menu-item">
-        <a href="managers.php" class="nk-menu-link">
+    <li class="nk-menu-item {{ request()->routeIs('managers.index') ? 'active':'' }}">
+        <a href="{{ route('managers.index') }}" class="nk-menu-link">
             <span class="nk-menu-icon"><em class="icon ni ni-account-setting"></em></span>
             <span class="nk-menu-text">Менеджеры</span>
         </a>
