@@ -31,8 +31,8 @@
                     <em class="icon ni ni-user-alt"></em>
                 </div>
                 <div class="user-info d-none d-xl-block">
-                    <div class="user-status user-status-verified">Администратор</div>
-                    <div class="user-name dropdown-indicator">Евгений Тимонов</div>
+                    <div class="user-status user-status-verified">{{ Auth::user()->role }}</div>
+                    <div class="user-name dropdown-indicator">{{ Auth::user()->name }}</div>
                 </div>
             </div>
         </a>
@@ -40,8 +40,8 @@
             <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
                 <div class="user-card">
                     <div class="user-info">
-                        <span class="lead-text">Евгений Тимонов</span>
-                        <span class="sub-text">jeny.t@naporoge.ru</span>
+                        <span class="lead-text">{{ Auth::user()->name }}</span>
+                        <span class="sub-text">{{ Auth::user()->email }}</span>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,13 @@
             </div>
             <div class="dropdown-inner">
                 <ul class="link-list">
-                    <li><a href="#"><em class="icon ni ni-signout"></em><span>Выйти</span></a></li>
+                    <li>
+                        <form method="post" action="{{ route('logout') }}" class="flex">
+                            @csrf
+
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();"><em class="icon ni ni-signout"></em><span>Выйти</span></a>
+                        </form>
+                    </li>
                 </ul>
             </div>
         </div>

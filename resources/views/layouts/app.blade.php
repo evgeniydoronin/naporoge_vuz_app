@@ -2,7 +2,6 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <base href="../">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Fav Icon  -->
@@ -57,7 +56,7 @@
                             <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
                         </div>
                         <div class="nk-header-brand d-xl-none">
-                            <a href="html22/index.html" class="logo-link">
+                            <a href="{{ route('dashboard') }}" class="logo-link">
                                 <img class="logo-light logo-img" src="{{ asset('images/logo.png') }}">
                             </a>
                         </div><!-- .nk-header-brand -->
@@ -254,12 +253,6 @@
 <script src="{{ asset('assets/js/editors.js') }}"></script>
 
 <script>
-    // Code Create Page
-    $('#university-select').change(function () {
-        let universityID = $(this).val()
-
-        console.log(universityID)
-    })
 
     // DataTable Init @v1.0
     NioApp.DataTable.init = function() {
