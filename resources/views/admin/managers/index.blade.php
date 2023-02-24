@@ -23,7 +23,7 @@
                                         <div style="display:block" class="invalid-feedback">{{ $message }}</div>
                                         @enderror
 
-                                        <form action="" method="post" class="gy-3">
+                                        <form action="{{ route('managers.store') }}" method="post" class="gy-3 form-validate">
                                             @csrf
 
                                             <div class="row g-3 align-center">
@@ -83,17 +83,17 @@
 
                                             @forelse ($managers as $manager)
                                                 <tr>
-                                                    <td>{{ $manager->id }}</td>
-                                                    <td>{{ $manager->email }}</td>
-                                                    <td>{{ $manager->name }}</td>
-                                                    <form action="{{ route('managers.update', $manager->id) }}" method="post">
+                                                    <td>{{ $manager->user_id }}</td>
+                                                    <td>{{ \App\Models\User::find($manager->user_id)->email }}</td>
+                                                    <td>{{ \App\Models\User::find($manager->user_id)->name }}</td>
+                                                    <form action="{{ route('managers.update', $manager->user_id) }}" method="post">
                                                         @csrf
                                                         @method('PUT')
                                                         <td>
                                                             <div class="custom-control custom-control-sm custom-checkbox">
                                                                 <input type="checkbox" name="is_cleaner" value="1" {{ $manager->is_cleaner ? 'checked' : '' }} class="custom-control-input"
-                                                                       id="isCleanerCheckbox-{{ $manager->id }}">
-                                                                <label class="custom-control-label" for="isCleanerCheckbox-{{ $manager->id }}"></label>
+                                                                       id="isCleanerCheckbox-{{ $manager->user_id }}">
+                                                                <label class="custom-control-label" for="isCleanerCheckbox-{{ $manager->user_id }}"></label>
                                                             </div>
                                                         </td>
                                                         <td>
@@ -101,8 +101,7 @@
                                                         </td>
                                                     </form>
                                                     <td class="d-flex justify-content-end">
-                                                        <a href="#" class="btn btn-sm btn-outline-warning">Сбросить пароль</a>&nbsp
-                                                        <form action="{{ route('managers.destroy', $manager->id) }}" method="post">
+                                                        <form action="{{ route('managers.destroy', $manager->user_id) }}" method="post">
                                                             @csrf
                                                             @method('DELETE')
 

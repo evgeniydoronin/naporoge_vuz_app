@@ -13,7 +13,7 @@
                         </div>
                         <div class="card">
                             <div class="card-inner">
-                                <form action="{{ route('groups.store') }}" method="post" class="gy-3">
+                                <form action="{{ route('groups.store') }}" method="post" class="gy-3 form-validate">
                                     @csrf
 
                                     <div class="row g-3 align-center">
@@ -25,7 +25,7 @@
                                         <div class="col-lg-7">
                                             <div class="form-group">
                                                 <div class="form-control-wrap">
-                                                    <input type="text" name="name" class="form-control" id="site-name">
+                                                    <input type="text" name="name" class="form-control" id="site-name" required>
                                                 </div>
                                             </div>
                                         </div>
