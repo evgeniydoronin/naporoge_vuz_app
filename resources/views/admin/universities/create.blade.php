@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-admin-layout>
 
 @php
 $tz = new \App\Etc\UniversityTimezone();
@@ -95,4 +95,4 @@ $tz = new \App\Etc\UniversityTimezone();
     </div>
     <!-- content @e -->
 
-</x-app-layout>
+</x-admin-layout>

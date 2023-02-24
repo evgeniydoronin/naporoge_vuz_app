@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-admin-layout>
     <!-- content @s -->
     <div class="nk-content ">
         <div class="container-fluid">
@@ -122,4 +122,4 @@
     </div>
     <!-- content @e -->
 
-</x-app-layout>
+</x-admin-layout>

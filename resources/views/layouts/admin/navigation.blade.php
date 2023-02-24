@@ -3,7 +3,7 @@
         <h6 class="overline-title text-primary-alt">Dashboard</h6>
     </li><!-- .nk-menu-item -->
     <li class="nk-menu-item">
-        <a href="index.php" class="nk-menu-link">
+        <a href="{{ route('dashboard') }}" class="nk-menu-link">
             <span class="nk-menu-icon"><em class="icon ni ni-growth-fill"></em></span>
             <span class="nk-menu-text">Аналитика</span>
         </a>

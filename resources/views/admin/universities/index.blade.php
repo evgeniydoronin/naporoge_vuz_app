@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-admin-layout>
 
     <!-- content @s -->
     <div class="nk-content ">
@@ -66,4 +66,4 @@
     </div>
     <!-- content @e -->
 
-</x-app-layout>
+</x-admin-layout>
