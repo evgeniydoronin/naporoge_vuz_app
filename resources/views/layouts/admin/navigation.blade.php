@@ -58,8 +58,8 @@
         </ul><!-- .nk-menu-sub -->
     </li><!-- .nk-menu-item -->
 
-    <li class="nk-menu-item">
-        <a href="" class="nk-menu-link">
+    <li class="nk-menu-item {{ request()->routeIs('students.index') ? 'active':'' }}">
+        <a href="{{ route('students.index') }}" class="nk-menu-link">
             <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
             <span class="nk-menu-text">Студенты</span>
         </a>

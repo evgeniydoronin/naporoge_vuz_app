@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CodeController;
 use App\Http\Controllers\Admin\ExportDataController;
 use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\Admin\ManagerController;
+use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\UniversityController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
@@ -21,6 +22,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/dashboard/groups', GroupController::class);
     Route::resource('/dashboard/codes', CodeController::class);
     Route::resource('/dashboard/managers', ManagerController::class);
+    Route::resource('/dashboard/students', StudentController::class);
 
     Route::get('/getGroupsByUniversity/{id}', [CodeController::class, 'getGroupsByUniversity']);
     Route::get('/getCodesIdByGroupId/{id}', [ExportDataController::class, 'getCodesIdByGroupId'])->name('getCodesIdByGroupId');
