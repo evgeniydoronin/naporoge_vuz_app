@@ -65,13 +65,14 @@
         </a>
     </li><!-- .nk-menu-item -->
 
-
+    @can('access-admin')
     <li class="nk-menu-item {{ request()->routeIs('managers.index') ? 'active':'' }}">
         <a href="{{ route('managers.index') }}" class="nk-menu-link">
             <span class="nk-menu-icon"><em class="icon ni ni-account-setting"></em></span>
             <span class="nk-menu-text">Менеджеры</span>
         </a>
     </li><!-- .nk-menu-item -->
+    @endcan
 
     <li class="nk-menu-item has-sub">
         <a href="#" class="nk-menu-link nk-menu-toggle">

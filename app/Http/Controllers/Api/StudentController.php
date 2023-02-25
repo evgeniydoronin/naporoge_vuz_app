@@ -9,6 +9,6 @@ class StudentController extends Controller
 {
     public function index()
     {
-        return 'API';
+       return ['student' => '1'];
     }
 }

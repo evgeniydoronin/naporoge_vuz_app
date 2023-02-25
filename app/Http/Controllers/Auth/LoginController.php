@@ -22,21 +22,24 @@ class LoginController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $credentials = $request->validate([
-            'email' => ['required', 'string', 'email'],
+            'email'    => ['required', 'string', 'email'],
             'password' => ['required', 'string']
         ]);
 
-        if (!Auth::attempt($credentials, $request->boolean('remember'))) {
+        if ( ! Auth::attempt($credentials, $request->boolean('remember'))) {
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed')
             ]);
         }
 
+
         $request->session()->regenerate();
 
-        //        dd(Auth::user()->role->value);
-
-        return redirect()->intended(RouteServiceProvider::DASHBOARD);
+        return Auth::user()->can('access-admin-manager')
+            ?
+            redirect()->intended(RouteServiceProvider::DASHBOARD)
+            :
+            redirect()->intended(RouteServiceProvider::HOME);
     }
 
     public function destroy(Request $request): RedirectResponse
