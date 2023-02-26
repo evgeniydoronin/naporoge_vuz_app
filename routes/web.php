@@ -17,15 +17,15 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::middleware(['can:access-admin-manager'])->group(function () {
-        Route::get('/dashboard', fn () => view('dashboard'))->name('dashboard');
-        Route::resource('/dashboard/universities', UniversityController::class);
-        Route::resource('/dashboard/groups', GroupController::class);
-        Route::resource('/dashboard/codes', CodeController::class);
-        Route::resource('/dashboard/managers', ManagerController::class)->middleware('can:access-admin');
-        Route::resource('/dashboard/students', StudentController::class);
+    Route::middleware(['can:access-admin-manager'])->prefix('dashboard')->group(function () {
+        Route::get('/', fn () => view('dashboard'))->name('dashboard');
+        Route::resource('/universities', UniversityController::class);
+        Route::resource('/groups', GroupController::class);
+        Route::resource('/codes', CodeController::class);
+        Route::resource('/managers', ManagerController::class)->middleware('can:access-admin');
+        Route::resource('/students', StudentController::class);
 
-        Route::get('/getGroupsByUniversity/{id}', [CodeController::class, 'getGroupsByUniversity']);
+        Route::get('/getGroupsByUniversity/{id}', [CodeController::class, 'getGroupsByUniversity'])->name('getGroupsByUniversity');
         Route::get('/getCodesIdByGroupId/{id}', [ExportDataController::class, 'getCodesIdByGroupId'])->name('getCodesIdByGroupId');
     });
 

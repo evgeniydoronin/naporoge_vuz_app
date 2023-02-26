@@ -36,7 +36,7 @@
                                                     }
 
                                                     async function getGroups(id) {
-                                                        let url = `${location.origin}/getGroupsByUniversity/${id}`;
+                                                        let url = `${location.origin}/dashboard/getGroupsByUniversity/${id}`;
                                                         let response = await fetch(url);
 
                                                         if (response.ok) {
