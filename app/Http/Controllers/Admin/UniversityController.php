@@ -17,11 +17,14 @@ class UniversityController extends Controller
      */
     public function index(): View
     {
-        $universities = University::all()->sortDesc();
-        $groups = Group::whereBelongsTo($universities)->get();
+        $universities = University::all();
+        $groups = Group::all();
+        if ($universities->isNotEmpty()) {
+            $groups = Group::whereBelongsTo($universities)->get();
+        }
 
         return view('admin.universities.index', compact('universities', 'groups'));
-    }
+   }
 
     /**
      * Show the form for creating a new resource.
