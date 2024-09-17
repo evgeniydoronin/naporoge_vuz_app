@@ -81,9 +81,18 @@
         </a>
         <ul class="nk-menu-sub">
             <li class="nk-menu-item">
-                <a href="contents.php" class="nk-menu-link"><span class="nk-menu-text">Теория к курсу и формы документов</span></a>
+                <a href="{{ route('theories.index') }}" class="nk-menu-link">
+                    <span class="nk-menu-text">Теория к курсу и формы документов</span>
+                </a>
             </li>
         </ul><!-- .nk-menu-sub -->
+    </li><!-- .nk-menu-item -->
+
+    <li class="nk-menu-item {{ request()->routeIs('exports.index') ? 'active':'' }}">
+        <a href="{{ route('exports.index') }}" class="nk-menu-link">
+            <span class="nk-menu-icon"><em class="icon ni ni-download"></em></span>
+            <span class="nk-menu-text">Экспорт</span>
+        </a>
     </li><!-- .nk-menu-item -->
 
 </ul>

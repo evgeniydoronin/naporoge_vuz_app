@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Etc\ExportData;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GroupStoreRequest;
+use App\Models\Code;
 use App\Models\Group;
 use App\Models\University;
 use Illuminate\Http\RedirectResponse;
@@ -20,8 +21,9 @@ class GroupController extends Controller
     public function index(): View
     {
         $groups = Group::all()->sortDesc();
+        $codes = Code::all();
 
-        return view('admin.groups.index', compact('groups'));
+        return view('admin.groups.index', compact('groups', 'codes'));
     }
 
     /**

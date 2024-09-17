@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\Admin\CodeController;
 use App\Http\Controllers\Admin\ExportDataController;
+use App\Http\Controllers\Admin\ExportStudentsController;
 use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\Admin\ManagerController;
 use App\Http\Controllers\Admin\StudentController;
+use App\Http\Controllers\Admin\TheoryController;
 use App\Http\Controllers\Admin\UniversityController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
@@ -23,10 +25,18 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/groups', GroupController::class);
         Route::resource('/codes', CodeController::class);
         Route::resource('/managers', ManagerController::class)->middleware('can:access-admin');
+
+        // Новый маршрут для обновления студентов из файла
+        Route::post('/students/update-from-file', [StudentController::class, 'updateStudents'])->name('students.updateFromFile');
+        // Маршруты ресурсов
         Route::resource('/students', StudentController::class);
+
+        Route::resource('/theories', TheoryController::class);
+        Route::resource('/exports', ExportStudentsController::class);
 
         Route::get('/getGroupsByUniversity/{id}', [CodeController::class, 'getGroupsByUniversity'])->name('getGroupsByUniversity');
         Route::get('/getCodesIdByGroupId/{id}', [ExportDataController::class, 'getCodesIdByGroupId'])->name('getCodesIdByGroupId');
+        Route::get('/getDatesByUniversity/{id}', [ExportStudentsController::class, 'getDatesByUniversity'])->name('getDatesByUniversity');
     });
 
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');

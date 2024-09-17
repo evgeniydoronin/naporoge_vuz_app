@@ -1,3 +1,7 @@
+@php
+    use App\Models\Code;
+    use App\Models\User;
+@endphp
 <x-admin-layout>
     <!-- content @s -->
     <div class="nk-content ">
@@ -11,13 +15,15 @@
                             </div><!-- .nk-block-head-content -->
                             <div class="nk-block-head-content">
                                 <div class="toggle-wrap nk-block-tools-toggle">
-                                    <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
+                                    <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1"
+                                       data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
                                     <div class="toggle-expand-content" data-content="pageMenu">
                                         <ul class="nk-block-tools g-3">
                                             <li class="nk-block-tools-opt">
 
                                                 <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateStudentsModal">
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#updateStudentsModal">
                                                     <em class="icon ni ni-reports"></em><span>Обновить студентов</span>
                                                 </button>
 
@@ -46,18 +52,33 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>3Ww0de</td>
-                                        <td>+79008007060</td>
-                                        <td>student@gmail.com</td>
-                                        <td>Соколова Екатерина Андреевна</td>
-                                        <td>12-03-2022</td>
-                                        <td>2</td>
-                                        <td>
-                                            <a href="#" class="btn btn-sm btn-danger">очистить</a>
-                                        </td>
-                                    </tr>
+                                    @forelse($students as $student)
+                                        @php
+                                            $user = User::where('id',$student->user_id)->first();
+                                            $code =  Code::where('user_id',$student->user_id)->first();
+                                            $studentCode = '';
+                                            $phone = $student->phone ?? '';
+                                            $name = $user->name ?? '';
+                                            $attestation = $student->attestation ?? '';
+                                            if (!is_null($code)) {
+                                              $studentCode = $code['code'];
+                                            }
+                                        @endphp
+                                        <tr>
+                                            <td>{{ $student->user_id }}</td>
+                                            <td>{{ $studentCode }}</td>
+                                            <td>{{ $phone }}</td>
+                                            <td></td>
+                                            <td>{{ $name }}</td>
+                                            <td>{{ $student->last_active_at ?? '' }}</td>
+                                            <td>{{ $attestation }}</td>
+                                            <td>
+                                                <a href="#" class="btn btn-sm btn-danger">очистить</a>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <p class="bg-danger text-white p-1">Нет записей</p>
+                                    @endforelse
                                     </tbody>
                                 </table>
                             </div>

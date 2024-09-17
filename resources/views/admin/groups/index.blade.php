@@ -48,7 +48,12 @@
                                             </td>
                                             <td>{{ $group->start_at }}</td>
                                             <td>{{ $group->teachers }}</td>
-                                            <td><a href="{{ route('getCodesIdByGroupId', $group->id) }}" class="btn btn-sm btn-outline-success">скачать</a></td>
+                                            <td>
+                                                @if( $group->codes->isNotEmpty() )
+                                                    <a href="{{ route('getCodesIdByGroupId', $group->id) }}" class="btn btn-sm btn-outline-success">скачать</a></td>
+                                                @else
+                                                    <span class="text-danger">Не созданы</span>
+                                                @endif
                                             <td>
                                                 <div class="custom-control custom-control-sm custom-checkbox">
                                                     <input type="checkbox" class="custom-control-input" id="customCheck7">

@@ -13,6 +13,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
+//      $schedule->command('app:send-scheduled-notifications')->everyMinute()->withoutOverlapping()->appendOutputTo(storage_path('logs/scheduled-tasks.log'));
+      $schedule->command('app:send-scheduled-notifications')->everyMinute()->withoutOverlapping();
     }
 
     /**

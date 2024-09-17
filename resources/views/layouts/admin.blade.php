@@ -75,6 +75,18 @@
                         </script>
 
                         @endif
+
+                        @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                         <!-- status message @e -->
 
                         <div class="nk-header-tools">
@@ -153,56 +165,45 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-
-                <form action="#" class="form-validate">
+                <form action="{{ route('students.updateFromFile') }}" method="POST" enctype="multipart/form-data" > <!-- class="dropzone" id="file-dropzone" -->
+                    @csrf
                     <div class="row g-gs">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label class="form-label" for="default-06">Расшифровка что делать</label>
-                                <div class="form-control-wrap ">
-                                    <div class="form-control-select">
-                                        <select class="form-control" id="default-06">
-                                            <option value="default_option">Выбрать вуз</option>
-                                            <option value="option_select_name">Вуз №1</option>
-                                            <option value="option_select_name">Вуз №2</option>
-                                        </select>
-                                    </div>
+                                <label class="form-label" for="university">Выбрать вуз</label>
+                                <div class="form-control-wrap">
+                                    <select class="form-control" id="university" name="university_id">
+                                        <option value="default_option">Выбрать вуз</option>
+                                        <!-- Здесь добавить университеты из базы данных -->
+                                    </select>
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label class="form-label" for="default-06">Расшифровка что делать</label>
-                                <div class="form-control-wrap ">
-                                    <div class="form-control-select">
-                                        <select class="form-control" id="default-06">
-                                            <option value="default_option">Выбрать группу</option>
-                                            <option value="option_select_name">Группа №1</option>
-                                            <option value="option_select_name">Группа №2</option>
-                                        </select>
-                                    </div>
+                                <label class="form-label" for="group">Выбрать группу</label>
+                                <div class="form-control-wrap">
+                                    <select class="form-control" id="group" name="group_id">
+                                        <option value="default_option">Выбрать группу</option>
+                                        <!-- Здесь добавить группы из базы данных -->
+                                    </select>
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-md-12">
-                            <div class="upload-zone">
-                                <div class="dz-message" data-dz-message>
-                                    <span class="dz-message-text">Загружается эксель файл, где столбики: Код активации, ФИО студента (текст), оценка аттестации (пусто или число: 0-«Потенциал роста», 1-«Хорошо», 2-«Отлично»).</span>
-                                    <br>
-                                    <span class="dz-message-text">Перетащить сюда EXCEL файл</span>
-                                    <span class="dz-message-or">или</span>
-                                    <button class="btn btn-outline-primary">найти на компьютере</button>
-                                </div>
-                            </div>
+                            <input type="file" name="fileStudentsImport" class="form-control" placeholder="найти на компьютере"/>
+{{--                            <div class="upload-zone">--}}
+{{--                                <div class="dz-message" data-dz-message>--}}
+{{--                                    <span class="dz-message-text">Загрузить эксель файл</span>--}}
+{{--                                    <br>--}}
+{{--                                    <span class="dz-message-text">Перетащите сюда EXCEL файл</span>--}}
+{{--                                    <span class="dz-message-or">или</span>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                         </div>
-
                     </div>
-
-                    <button type="button" class="btn btn-primary mt-4">Обновить</button>
+                    <button type="submit" class="btn btn-primary mt-4">Обновить</button>
                 </form>
-
             </div>
         </div>
     </div>
